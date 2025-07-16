@@ -12,6 +12,7 @@ console.info({ answer })
 
 function Game() {
   const [guessHistory, setGuessHistory] = React.useState([])
+  const guessLimitReached = guessHistory.length >= 6
 
   const handleGuessSubmit = (guess) => {
     setGuessHistory((prevHistory) => [...prevHistory, guess])
@@ -19,7 +20,7 @@ function Game() {
   return (
     <>
       <GuessHistory guessHistory={guessHistory} />
-      <GuessInput onGuessSubmit={handleGuessSubmit} />
+      <GuessInput isDisabled={guessLimitReached} onGuessSubmit={handleGuessSubmit} />
     </>
   )
 }
