@@ -1,6 +1,8 @@
 import React from 'react'
 
-function GuessInput({ isDisabled, onGuessSubmit }) {
+import HappyBanner from '../HappyBanner'
+
+function GuessInput({ answerGuessed, numOfGuesses, onGuessSubmit }) {
   const [guess, setGuess] = React.useState('')
 
   const submitGuess = (event) => {
@@ -15,13 +17,14 @@ function GuessInput({ isDisabled, onGuessSubmit }) {
     <div className="guess-input-wrapper">
       <form className="guess-input" onSubmit={submitGuess}>
         <label htmlFor="guess-input">Enter guess:</label>
+        {answerGuessed && <HappyBanner numOfGuesses={numOfGuesses} />}
         <input
           type="text"
           value={guess}
           pattern="[A-Z]{5}"
           onChange={(e) => setGuess(e.target.value.toUpperCase())}
           id="guess-input"
-          disabled={isDisabled}
+          disabled={answerGuessed || numOfGuesses >= 6}
         />
       </form>
     </div>
