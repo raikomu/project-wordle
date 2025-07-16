@@ -12,7 +12,6 @@ console.info({ answer })
 
 function Game() {
   const [guessHistory, setGuessHistory] = React.useState([])
-  const answerGuessed = guessHistory.includes(answer)
 
   const handleGuessSubmit = (guess) => {
     setGuessHistory((prevHistory) => [...prevHistory, guess])
@@ -20,11 +19,7 @@ function Game() {
   return (
     <>
       <GuessHistory guessHistory={guessHistory} answer={answer} />
-      <GuessInput
-        answerGuessed={answerGuessed}
-        numOfGuesses={guessHistory.length}
-        onGuessSubmit={handleGuessSubmit}
-      />
+      <GuessInput answer={answer} guessHistory={guessHistory} onGuessSubmit={handleGuessSubmit} />
     </>
   )
 }
